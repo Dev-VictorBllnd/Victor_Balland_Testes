@@ -59,7 +59,7 @@
 
         <!-- COLOQUE COMENTARIO NA LINHA ABAIXO PARA REALIZAR OS TESTES-->
         
-        <!-- <form method="POST" action="cadastro.php" align="center"> -->
+        <form method="POST" action="cadastro.php" align="center">
 
         <!-- RETIRE O COMENTARIO DA LINHA ABAIXO PARA REALIZAR OS TESTES e DEPOIS COMENTE NOVAMENTE-->
 
