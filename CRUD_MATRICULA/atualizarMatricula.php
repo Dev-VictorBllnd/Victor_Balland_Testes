@@ -4,60 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Aluno</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family: helvetica;">
-    <form>
-        <p align="center">
-            <font size="7" face="Arial">U.C Teste de Sistemas - U.C Testes de Sistemas - SENAI SC</font>
-        </p>
+<body>
+
+<div class="container painel-principal mt-4">
+
+    <div class="text-center cabecalho mb-4">
+        <h1>U.C Teste de Sistemas - U.C Testes de Sistemas - SENAI SC</h1>
+        <h4 class="text-danger">Alteração de Dados de Matricula</h4>
+    </div>
+
+    <hr class="linha-divisoria">
+
+    <h2 class="text-center mb-4 display-6">Procurar Matricula</h2>
+
+    <form method="POST" action="formAtualizarMatricula.php" class="row justify-content-center mb-4 text-start">
+        <div class="col-md-4">
+            <label for="iID" class="form-label fw-bold">ID da Matricula:</label>
+            <input id="iID" type="text" class="form-control" name="ID" placeholder="Digite o ID numérico">
+        </div>
+        
+        <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-primary me-2 px-4">Procurar</button>
+            <button type="reset" class="btn btn-secondary px-4">Limpar Dados</button>
+        </div>
     </form>
-    <h4>
-        <font color="red">
-            <center>Alteração de Dados de Matricula</center>
-        </font>   
-    </h4>
 
-    <hr width="100%" align="center" size="3" color="blue">
-<h1 align="center">Procurar Matricula</h1>
+    <hr class="linha-divisoria w-75 mx-auto">
 
-<form method="POST" action="formAtualizarMatricula.php" align="center">
-    ID da Matricula:
-    <input type="text" size="30" name="ID"><br><br>
-    <input type="submit" value="Procurar">
-    <input type="reset" value="Limpar Dados">
-</form>
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4 mt-4">
+        <form method="POST" action="formMatricula.php">
+            <button type="submit" class="btn btn-outline-success">Registrar Nova Matricula</button>
+        </form>
+        <form method="POST" action="listarMatricula.php">
+            <button type="submit" class="btn btn-outline-primary">Listar Matriculas</button>
+        </form>
+        <form method="POST" action="procurarMatricula.php">
+            <button type="submit" class="btn btn-outline-info">Consultar Matricula</button>
+        </form>
+        <form method="POST" action="apagarMatricula.php">
+            <button type="submit" class="btn btn-outline-danger">Apagar Dados de Matricula</button>
+        </form>
+    </div>
 
-<hr width="100%" align="center" size="3" color="blue">
-        <table width="400" border="0" cellspacing="0" cellspading="0" align="center">
-            <tr>
-            <td>
-                    <form method="POST" action="formMatricula.php">
-                        <center><input type="submit" value="Registrar Nova Matricula"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="listarMatricula.php">
-                        <center><input type="submit" value="Listar Matriculas"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="procurarMatricula.php">
-                        <center><input type="submit" value="Consultar Matricula"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="apagarMatricula.php">
-                        <center><input type="submit" value="Apagar Dados de Matricula"></center>
-                    </form>
-                </td>
-            </tr>
-        </table><br>
-        <nav align="center">
-            <a href="index.php">| Home |</a>
-            <a href="formMatricula.php"> Matricula |</a>
-        </nav>
+    <nav class="text-center mb-3">
+        <a href="../CRUD_ALUNO/index.php" class="text-decoration-none fw-bold me-3">Home</a>
+        <a href="formMatricula.php" class="text-decoration-none fw-bold">Matricula</a>
+    </nav>
 
-    <hr>
-    <p align="center">Prof. Sergio Luiz da Silveira</p> 
+    <hr class="linha-divisoria">
+    <p class="text-center rodape">Prof. Sergio Luiz da Silveira</p> 
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

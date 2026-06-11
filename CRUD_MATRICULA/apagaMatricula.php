@@ -4,89 +4,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apagar Dados</title>
+    <title>Apagar Dados - Matrícula</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family: helvetica;">
-<form>
-        <p align="center">
-            <font size="7" face="Arial">U.C Testes de Sistemas - SENAI SC</font>
-        </p>
-    </form>
-    <h4>
-         <font color="red">
-            <center>Exclusão de Cadastro de Matricula</center>
-        </font>   
-    </h4>
+<body>
 
-    <hr width="100%" align="center" size="3" color="blue">
+<div class="container painel-principal mt-4">
 
+    <div class="text-center cabecalho mb-4">
+        <h1>U.C Testes de Sistemas - SENAI SC</h1>
+        <h4 class="text-danger">Exclusão de Cadastro de Matricula</h4>
+    </div>
 
-<?php
+    <hr class="linha-divisoria">
 
-if (isset($_POST["ID"])){
-    
-    $ID = $_POST["ID"];
-    
-            $conexao = new mysqli("127.0.0.1","root","","sistemaescola");
-            if($conexao->connect_errno){
-                $erro = "Ocorreu um erro na conexão com o banco de dados.";
-                exit;
-            }
+    <div class="row justify-content-center my-5">
+        <div class="col-md-6 text-center">
 
-            $conexao->set_charset("utf8");
+            <?php
+            if (isset($_POST["ID"])){
+                
+                $ID = $_POST["ID"];
+                
+                $conexao = new mysqli("127.0.0.1","root","","sistemaescola");
+                if($conexao->connect_errno){
+                    $erro = "Ocorreu um erro na conexão com o banco de dados.";
+                    exit;
+                }
 
-            $sql = "DELETE FROM `matricula` WHERE id='$ID';";
-            echo $sql."<br>";
+                $conexao->set_charset("utf8");
 
-            if($conexao->query($sql)=== TRUE){
-                $sucesso = "Matricula Deletado com sucesso!";
+                // Mantendo a sua query original
+                $sql = "DELETE FROM `matricula` WHERE id='$ID';";
+                
+                // Exibição do debug do SQL estilizada
+                echo '<p class="text-muted small font-monospace mb-4">DEBUG SQL: ' . $sql . '</p>';
+
+                if($conexao->query($sql) === TRUE){
+                    $sucesso = "Matricula Deletado com sucesso!";
+                } else {
+                    $erro = "Erro :".$sql."<br>".$conexao->error;
+                }
+                $conexao->close();
             } else {
-                $erro = "Erro :".$sql."<br>".$conexao->error;
+                $erro = "Campo obrigatório não preenchido";
             }
-            $conexao->close();
-} else {
-    $erro = "Campo obrigatório não preenchido";
-}
 
+            // Alertas modernos do Bootstrap substituindo as tags <font> e <div> com style inline
+            if(isset($erro)) {
+                echo '<div class="alert alert-danger fs-5 shadow-sm" role="alert">';
+                echo '<strong>Atenção!</strong> ' . $erro;
+                echo '</div>';
+            }
 
-if(isset($erro)) echo '<div style="color:#F00" align="center">'.$erro.'</div><br><br>';
+            if(isset($sucesso)) {
+                echo '<div class="alert alert-success fs-5 shadow-sm" role="alert">';
+                echo '<strong>Concluído!</strong> ' . $sucesso;
+                echo '</div>';
+            }
+            ?>
 
-if(isset($sucesso)) echo '<div style="color:#00F" align="center">'.$sucesso.'</div><br><br>';
+        </div>
+    </div>
 
+    <hr class="linha-divisoria">
 
-?>
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4 mt-4">
+        <form method="POST" action="formMatricula.php">
+            <button type="submit" class="btn btn-outline-success">Registrar Nova Matricula</button>
+        </form>
+        <form method="POST" action="listarMatricula.php">
+            <button type="submit" class="btn btn-outline-primary">Listar Matriculas</button>
+        </form>
+        <form method="POST" action="procurarMatricula.php">
+            <button type="submit" class="btn btn-outline-info">Consultar Matricula</button>
+        </form>
+        <form method="POST" action="atualizarMatricula.php">
+            <button type="submit" class="btn btn-outline-warning">Atualizar Dados de Matricula</button>
+        </form>
+    </div>
 
-<hr width="100%" align="center" size="3" color="blue">
-        <table width="400" border="0" cellspacing="0" cellspading="0" align="center">
-            <tr>
-            <td>
-                    <form method="POST" action="formMatricula.php">
-                        <center><input type="submit" value="Registrar Nova Matricula"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="listarMatricula.php">
-                        <center><input type="submit" value="Listar Matriculas"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="procurarMatricula.php">
-                        <center><input type="submit" value="Consultar Matricula"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="atualizarMatricula.php">
-                        <center><input type="submit" value="Atualizar Dados de Matricula"></center>
-                    </form>
-                </td>
-            </tr>
-        </table><br>
-        <nav align="center">
-            <a href="index.php">| Home |</a>
-            <a href="formMatricula.php"> Matricula |</a>
-        </nav>
-        <hr>
-        <p align="center">Prof. Sergio Luiz da Silveira</p> 
+    <nav class="text-center mb-3">
+        <a href="../CRUD_ALUNO/index.php" class="text-decoration-none fw-bold me-3">Home</a>
+        <a href="formMatricula.php" class="text-decoration-none fw-bold">Matricula</a>
+    </nav>
     
+    <hr class="linha-divisoria">
+    <p class="text-center rodape">Prof. Sergio Luiz da Silveira</p> 
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
